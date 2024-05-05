@@ -1,7 +1,4 @@
 .section .data
-    string:
-        .asciz "Hello World!!!\n"
-        string_len = .-string
 
 .global _start
 
