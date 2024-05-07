@@ -16,42 +16,36 @@ _start:
     LDR R2, =i
 
     MOV R3, #0
-    STR R3, [R2]
-    MOV R3, #-1
+    STR R3, [R2] // i = 0
+
+    MOV R6, #2 // C
 
     loop:
         LDR R3, [R2]
         CMP R3, #100
-        BGT loop_end
+        BGT loop_end // i <= 100
 
-        LDR R4, [R0, R3]
-        LDR R5, [R1, R3]
+        LDR R4, [R0, R3] // A[i]
+        LDR R5, [R1, R3] // B[i]
 
         CMP R4, R5
-        BGE else
+        BGE else // A[i] < B[i]
 
-        CMP R6, #1
-        BEQ if
-        B else
+        CMP R4, #0
+        BEQ else // A[i] != 0
 
         if:
-            MOV R4, R2
-            ADD R4, R4, #1
-            LDR R3, [R0, R2]
-            LDR R5, [R0, R4]
-            ADD R3, R3, R5
-            STR R3, [R0, R2]
+            ADD R5, R5, R6 // B[i] + C
+            STR R5, [R0, R3] // A[i] = B[i] + C
             B next
         
         else:
-            LDR R3, [R0, R2]
-            MOV R4, #2
-            MUL R3, R4, R3
-            STR R3, [R0, R2]
+            SUB R5, R5, R6 // B[i] - C
+            STR R5, [R0, R3] // A[i] = B[i] - C
             B next
         
         next:
-            ADD R2, R2, #1
+            ADD R2, R2, #1 // i++
             STR R2, [R1]
 
     loop_end:

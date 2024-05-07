@@ -25,41 +25,41 @@ _start:
     LDR R1, =i
 
     MOV R2, #0
-    STR R2, [R1]
-    MOV R2, #-1
+    STR R2, [R1] // i = 0
 
     loop:
         LDR R2, [R1]
-        CMP R2, #10
-        BEQ loop_end
 
-        BL division_by_2
+        CMP R2, #10 // Compara o valor de R2 com 10
+        BEQ loop_end // i < 10
+
+        BL division_by_2 // Calculo o resto
         MOV R5, #2
         MUL R6, R4, R5
-        SUB R6, R2, R6
+        SUB R6, R2, R6 // i % 2
 
-        CMP R6, #1
-        BEQ if
-        B else
+        CMP R6, #1 // i % 2 == 0
+
+        BEQ else
 
         if:
-            MOV R4, R2
-            ADD R4, R4, #1
-            LDR R3, [R0, R2]
-            LDR R5, [R0, R4]
-            ADD R3, R3, R5
-            STR R3, [R0, R2]
+            MOV R4, R2 // [i] 
+            ADD R4, R4, #1 // [i + 1]
+            LDR R3, [R0, R2] // A[i]
+            LDR R5, [R0, R4] // A[i + 1]
+            ADD R3, R3, R5 // A[i]+A[i+1]
+            STR R3, [R0, R2] // A[i] = A[i] + A[i+1]
             B next
         
         else:
-            LDR R3, [R0, R2]
+            LDR R3, [R0, R2] // A[i]
             MOV R4, #2
-            MUL R3, R4, R3
-            STR R3, [R0, R2]
+            MUL R3, R4, R3 // A[i] * 2
+            STR R3, [R0, R2] // A[i] = A[i] * 2
             B next
         
         next:
-            ADD R2, R2, #1
+            ADD R2, R2, #1 // i++
             STR R2, [R1]
 
     loop_end:
