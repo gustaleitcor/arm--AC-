@@ -47,7 +47,7 @@ _start:
             ADD R4, R4, #1 // [i + 1]
             LDR R3, [R0, R2] // A[i]
             LDR R5, [R0, R4] // A[i + 1]
-            ADD R3, R3, R5 // A[i]+A[i+1]
+            ADD R3, R3, R5 // A[i] + A[i+1]
             STR R3, [R0, R2] // A[i] = A[i] + A[i+1]
             B next
         
@@ -63,6 +63,9 @@ _start:
             STR R2, [R1]
 
     loop_end:
+
+    end:
+        B end
 
     mov r0, #0  // Move o valor 0 para r0 (status de saída)
     mov r7, #1  // Move o valor 1 para r7 (número da chamada de sistema para exit)

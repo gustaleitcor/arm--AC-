@@ -3,7 +3,7 @@
 		.ascii "\n"  // Define uma sequência de caracteres representando uma quebra de linha
 		contra_barra_len = .-contra_barra  // Calcula o tamanho da sequência de caracteres "contra_barra"
 	input:
-		.ascii "calado"  // Define uma string chamada "input" com o valor "calado"
+		.ascii "HArdwArE"  // Define uma string chamada "input" com o valor "HArdwArE"
 		input_len = .-input  // Calcula o tamanho da string "input"
 	output:
 		.space input_len  // Define um espaço de memória para armazenar a string de saída
@@ -57,41 +57,12 @@ _start:
 		B loop  // Salta para o rótulo "loop"
 	end_loop:
 
-	MOV R0, #1  // Move o valor 1 para R0 (número do arquivo de saída)
-	LDR R1, =input  // Carrega o endereço de "input" em R1
-	LDR R2, =input_len  // Carrega o valor de "input_len" em R2
-	MOV R7, #4  // Move o valor 4 para R7 (número da chamada de sistema para write)
-	svc #0  // Realiza uma chamada de sistema para escrever a string de entrada
-
-	MOV R0, #1  // Move o valor 1 para R0 (número do arquivo de saída)
-	LDR R1, =contra_barra  // Carrega o endereço de "contra_barra" em R1
-	LDR R2, =contra_barra_len  // Carrega o valor de "contra_barra_len" em R2
-	MOV R7, #4  // Move o valor 4 para R7 (número da chamada de sistema para write)
-	svc #0  // Realiza uma chamada de sistema para escrever uma quebra de linha
-
-	MOV R0, #1  // Move o valor 1 para R0 (número do arquivo de saída)
-	LDR R1, =output  // Carrega o endereço de "output" em R1
-	LDR R2, =input_len  // Carrega o valor de "input_len" em R2
-	MOV R7, #4  // Move o valor 4 para R7 (número da chamada de sistema para write)
-	svc #0  // Realiza uma chamada de sistema para escrever a string de saída
-
-	MOV R0, #1  // Move o valor 1 para R0 (número do arquivo de saída)
-	LDR R1, =contra_barra  // Carrega o endereço de "contra_barra" em R1
-	LDR R2, =contra_barra_len  // Carrega o valor de "contra_barra_len" em R2
-	MOV R7, #4  // Move o valor 4 para R7 (número da chamada de sistema para write)
-	svc #0  // Realiza uma chamada de sistema para escrever uma quebra de linha
-
 	b end  // Salta para o rótulo "end"
 
 	not_a_letter:
 
-	MOV R0, #1  // Move o valor 1 para R0 (número do arquivo de saída)
-	LDR R1, =aviso  // Carrega o endereço de "aviso" em R1
-	LDR R2, =aviso_len  // Carrega o valor de "aviso_len" em R2
-	MOV R7, #4  // Move o valor 4 para R7 (número da chamada de sistema para write)
-	svc #0  // Realiza uma chamada de sistema para escrever a mensagem de aviso
-
 	end:
+		B end // A string invertida deve estar na variável output
 
 	mov r0, #0  // Move o valor 0 para r0 (status de saída)
 	mov r7, #1  // Move o valor 1 para r7 (número da chamada de sistema para exit)

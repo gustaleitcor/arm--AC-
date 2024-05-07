@@ -99,6 +99,7 @@ _start:
 	STR R2, [R0]  // Armazena o valor do registrador R2 na variável comb
 
 end:
+	B end
 
 	mov r0, R2  // Move o valor de R2 para r0 (status de saída)
 	mov r7, #1  // Move o valor 1 para r7 (número da chamada de sistema para exit)

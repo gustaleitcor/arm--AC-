@@ -49,9 +49,13 @@ _start:
 	NEG R3, R3        	// Nega o valor em R3
 	
 	end:              	// Rótulo para o final do programa
+		LDR R0, =result   	// Carrega o endereço de 'result' no registrador R0
+		STR R3, [R0]      	// Armazena o valor em R3 no endereço em R0
+
+	_end:
+		B _end
 	
-	LDR R0, =result   	// Carrega o endereço de 'result' no registrador R0
-	STR R3, [R0]      	// Armazena o valor em R3 no endereço em R0
+	
 
 	mov r0, R3        	// Move o valor 0 para r0 (status de saída)
 	mov r7, #1        	// Move o valor 1 para r7 (número da chamada de sistema para sair)

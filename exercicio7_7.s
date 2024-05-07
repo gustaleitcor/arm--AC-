@@ -34,6 +34,8 @@ _start:
     STR R3, [R0]  // Armazena o valor de R3 no endereço apontado por R0
 
 _end:
+    B _end
+    
     mov r0, R3  // Move o valor de R3 para r0 (status de saída)
     mov r7, #1  // Move o valor 1 para r7 (número da chamada de sistema para exit)
     svc #0  // Realiza uma chamada de sistema para encerrar o programa

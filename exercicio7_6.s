@@ -58,10 +58,10 @@ BLEQ to_binary  // Se R2 for menor ou igual a '1', vai para to_binary
 CMP R2, #255  // Compara R2 com o valor 255
 BGT invalid  // Se R2 for maior que 255, vai para invalid
 
-invalid:
-
+invalid: // Label para caso a string seja invalida
 
 _end:
+    B _end // A variável deve estar carregada no registrador R3
 
 mov r0, R3  // Move o valor de R3 para r0
 mov r7, #1  // Move o valor 1 para r7

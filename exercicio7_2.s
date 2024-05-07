@@ -28,6 +28,7 @@ _start:
     B end             
 
 end:
+    B end
 
     mov r0, #0          // Move o valor 0 para r0 (status de saída)
     mov r7, #1          // Move o valor 1 para r7 (número da chamada de sistema para exit)
